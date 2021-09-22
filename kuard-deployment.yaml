@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kuard-replicas-4
+spec:
+  selector:
+    matchLabels:
+      run: kuard
+  replicas: 5
+  template:
+    metadata:
+      labels:
+        run: kuard
+      annotations:
+        kubernetes.io/change-cause: "Update to green kuard-05"
+    spec:
+      containers:
+      - name: kuard
+        image: gcr.io/kuar-demo/kuard-amd64:blue
